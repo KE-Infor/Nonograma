@@ -8,8 +8,7 @@ periferikoak.c
 #include "periferikoak.h"
 #include "fondoak.h"
 #include "spriteak.h"
-
-int EGOERA;
+#include "egoerak.h"
 
 void tekEten ()
 {
@@ -18,9 +17,6 @@ void tekEten ()
 		EGOERA=1;
 		ErlojuaMartxanJarri();
 		iprintf("\x1b[13;5HPasa diren segunduak=0");
-		erakutsiAteaIrekita();
-		ErakutsiErronboa(1, 5, 5);
-		ErakutsiErronboHandia(2, 100, 100);
 	}
 }
 
@@ -28,8 +24,6 @@ void tenpEten()
 {
 	static int tik=0;
 	static int seg=0;
-
-	iprintf("\x1b[14;5HDenb");
 	if (EGOERA==1)
 	{
 		tik++;
@@ -43,8 +37,6 @@ void tenpEten()
 				erakutsiAtea();
 				seg=0;
 				EGOERA=0;
-				EzabatuErronboa(1, 5, 5);
-				EzabatuErronboHandia(2, 100, 100);
 			}				
 		}
 	}
