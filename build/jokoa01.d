@@ -50,7 +50,8 @@ jokoa01.o: /mnt/hgfs/KE/Lanak/Nonograma/source/jokoa01.c \
   /mnt/hgfs/KE/Lanak/Nonograma/include/definizioak.h \
   /mnt/hgfs/KE/Lanak/Nonograma/include/periferikoak.h \
   /mnt/hgfs/KE/Lanak/Nonograma/include/zerbitzuErrutinak.h \
-  /mnt/hgfs/KE/Lanak/Nonograma/include/fondoak.h
+  /mnt/hgfs/KE/Lanak/Nonograma/include/fondoak.h \
+  /mnt/hgfs/KE/Lanak/Nonograma/include/laukia.h
 
 /opt/devkitPro/libnds/include/nds.h:
 
@@ -155,3 +156,5 @@ jokoa01.o: /mnt/hgfs/KE/Lanak/Nonograma/source/jokoa01.c \
 /mnt/hgfs/KE/Lanak/Nonograma/include/zerbitzuErrutinak.h:
 
 /mnt/hgfs/KE/Lanak/Nonograma/include/fondoak.h:
+
+/mnt/hgfs/KE/Lanak/Nonograma/include/laukia.h:
