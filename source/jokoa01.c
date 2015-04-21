@@ -36,13 +36,16 @@ void jokoa01()
 	// Etenen zerbitzu errutinak ezarri behar dira.
 	//***************************************************************************************//
 
+	IME = 1;
+	konfiguratuTeklatua(0x00004001);
+	konfiguratuTenporizadorea(39322,0x00000042);
+	TekEtenBaimendu();
+	DenbEtenBaimendu();
+	etenZerbErrutEzarri();
 
 	erakutsiAtea();
 
 	while(1)
 	{	
-		
-	
-			
 	}
 }

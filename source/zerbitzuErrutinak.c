@@ -29,6 +29,7 @@ void tenpEten()
 	static int tik=0;
 	static int seg=0;
 
+	iprintf("\x1b[14;5HDenb");
 	if (EGOERA==1)
 	{
 		tik++;
@@ -51,6 +52,7 @@ void tenpEten()
 
 void etenZerbErrutEzarri()
 {
-// HAU BETE
+	irqSet(IRQ_KEYS, tekEten);
+	irqSet(IRQ_TIMER0, tenpEten);
 }
 
