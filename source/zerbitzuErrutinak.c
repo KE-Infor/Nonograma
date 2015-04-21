@@ -12,11 +12,9 @@ periferikoak.c
 
 void tekEten ()
 {
-	if (SakatutakoTekla()==A)
+	if (SakatutakoTekla()==A && EGOERA == EGOERA_IRABAZI)
 	{
-		EGOERA=1;
-		ErlojuaMartxanJarri();
-		iprintf("\x1b[13;5HPasa diren segunduak=0");
+		EGOERA = EGOERA_RESET;
 	}
 }
 
@@ -24,19 +22,16 @@ void tenpEten()
 {
 	static int tik=0;
 	static int seg=0;
-	if (EGOERA==1)
+	if (EGOERA==EGOERA_IRABAZI)
 	{
 		tik++;
 		if (tik==5)
 		{
 			seg ++;
-			iprintf("\x1b[13;5HPasa diren segunduak=%d", seg);
 			tik=0;
 			if (seg==3)
 			{
-				erakutsiAtea();
-				seg=0;
-				EGOERA=0;
+				EGOERA = EGOERA_RESET;
 			}				
 		}
 	}

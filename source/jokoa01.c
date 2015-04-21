@@ -79,6 +79,14 @@ void jokoa01()
 		{
 			iprintf("\x1b[15;5H                            "); // Kontagailua borratu
 			iprintf("\x1b[7;0H    Zorionak, lortu duzu!  :D");
+
+			ErlojuaMartxanJarri();
+		}
+		else if (EGOERA == EGOERA_RESET)
+		{
+			reset();
+			iprintf("\x1b[15;0H                                  "); // Kontagailua borratu
+			iprintf("\x1b[7;0H                                   "); // Zorionak borratu
 		}
 	}
 }
