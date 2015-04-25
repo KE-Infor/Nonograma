@@ -14,7 +14,6 @@ automatikoki sortzen dira, konpilatzerako garaian, baina horretarako gogoratu be
 #include "fondoak.h"
 #include "grafikoak.h"
 #include "fondoa.h"
-#include "AteaIrekita.h"
 
 /* irudiak memorian kopiatzeko DMA kanala aukeratu (3.a) */
 static const int DMA_CHANNEL = 3;
@@ -27,12 +26,4 @@ void erakutsiAtea() {
                      fondoaBitmap, /* Automatikoki sortzen den aldagaia */
                      (uint16 *)BG_BMP_RAM(0), /* Fondo nagusiaren helbidea */
                      fondoaBitmapLen); /* Luzera (bytetan) automatikoki sortzen den aldagaia */
-}
-
-void erakutsiAteaIrekita() {
-		
-    dmaCopyHalfWords(DMA_CHANNEL,
-                     AteaIrekitaBitmap, /* Automatikoki sortzen den aldagaia */
-                     (uint16 *)BG_BMP_RAM(0), /* Fondo nagusiaren helbidea */
-                     AteaIrekitaBitmapLen); /* Luzera (bytetan) automatikoki sortzen den aldagaia */
 }

@@ -16,6 +16,7 @@ adibide batean oinarrituta.
 #include "laukia.h"
 #include "spriteak.h"
 #include "egoerak.h"
+#include "lagungarriak.h"
 
 #define X_OFFSET 112
 #define Y_OFFSET 48
@@ -44,6 +45,21 @@ void jokoa01()
 	{
 		if(EGOERA == EGOERA_BETE_GABE || EGOERA == EGOERA_BETETA)
 		{
+			iprintf("\x1b[4;1HAtea ireki dadin aurrean ikus");
+			iprintf("\x1b[5;2Hdezakezun puzzle japoniarra");
+			iprintf("\x1b[6;1H(nonograma) bete beharko duzu.");
+
+			iprintf("\x1b[8;2HBehin irudia beteta dagoela");
+			iprintf("\x1b[9;4H(kontagailua=0), irudia");
+			iprintf("\x1b[10;3Hklikatu ezazu irabazteko.");
+
+			iprintf("\x1b[12;1HOharra: kontagailuak erakusten");
+			iprintf("\x1b[13;3Hduen zenbakia, irabazteko");
+			iprintf("\x1b[14;2Hzenbat karratu aldatu behar");
+			iprintf("\x1b[15;6Hdiren adierazten du.");
+
+			iprintf("\x1b[18;7HKontagailua = %d           ", kontagailua);
+
 			touchRead(&PANT_DAT);
 			if((PANT_DAT.px != 0 || PANT_DAT.py != 0))
 			{
@@ -68,7 +84,7 @@ void jokoa01()
 				 		}
 			 		}
 				}
-				iprintf("\x1b[15;5H  Kontagailua=%d           ", kontagailua);
+				
 			}
 			else
 			{
@@ -77,16 +93,16 @@ void jokoa01()
 		}
 		else if (EGOERA == EGOERA_IRABAZI)
 		{
-			iprintf("\x1b[15;5H                            "); // Kontagailua borratu
-			iprintf("\x1b[7;0H    Zorionak, lortu duzu!  :D");
+			ezabatu_pantaila();
+			iprintf("\x1b[7;4HZorionak, lortu duzu! :D");
 
 			ErlojuaMartxanJarri();
+			EGOERA = EGOERA_IRABAZTEN;
 		}
 		else if (EGOERA == EGOERA_RESET)
 		{
+			ezabatu_pantaila();
 			reset();
-			iprintf("\x1b[15;0H                                  "); // Kontagailua borratu
-			iprintf("\x1b[7;0H                                   "); // Zorionak borratu
 		}
 	}
 }
@@ -147,7 +163,15 @@ void karratua_klikatu(int tx, int ty)
 void reset()
 {
 	kontagailua = 18;
-	int i;
-	for(i = 0; i<TILES*TILES; i++) piztuta[i] = 0;
+	int x, y;
+	for(x = 0; x<TILES; x++) 
+	{
+		for(y = 0; y<TILES; y++)
+		{
+			piztuta[x+y*TILES] = 0;
+			EzabatuBeltza(x + y*TILES, X_OFFSET + x * TILE_SIZE, Y_OFFSET +  y * TILE_SIZE);
+		}
+	}
 	EGOERA = EGOERA_BETE_GABE;
+	ezabatu_pantaila();
 }

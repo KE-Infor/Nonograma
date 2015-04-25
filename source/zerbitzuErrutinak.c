@@ -9,10 +9,11 @@ periferikoak.c
 #include "fondoak.h"
 #include "spriteak.h"
 #include "egoerak.h"
+#include "lagungarriak.h"
 
 void tekEten ()
 {
-	if (SakatutakoTekla()==A && EGOERA == EGOERA_IRABAZI)
+	if (SakatutakoTekla()==A && EGOERA == EGOERA_IRABAZTEN)
 	{
 		EGOERA = EGOERA_RESET;
 	}
@@ -22,18 +23,27 @@ void tenpEten()
 {
 	static int tik=0;
 	static int seg=0;
-	if (EGOERA==EGOERA_IRABAZI)
+	if (EGOERA==EGOERA_IRABAZTEN)
 	{
+		iprintf("\x1b[11;5HJokoa berriro hasteko");
+		iprintf("\x1b[12;8HA tekla pultsatu");
+		iprintf("\x1b[13;4Hedo %02d segundu itxaron.", 10-seg);
+
 		tik++;
 		if (tik==5)
 		{
-			seg ++;
+			seg++;
 			tik=0;
-			if (seg==3)
+			if (seg==10)
 			{
 				EGOERA = EGOERA_RESET;
 			}				
 		}
+	}
+	else
+	{
+		ezabatu_lerroa(9);
+		ezabatu_lerroa(10);
 	}
 }
 
