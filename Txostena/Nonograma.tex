@@ -1,23 +1,6 @@
-\documentclass[dvipsnames]{AritzhClass}
+\documentclass[dvipsnames]{../../../../AritzhClass}
 
 \usepackage{array}
-\usepackage{arydshln}
-\usepackage{subfig}
-
-\makeatletter
-\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
-  \hskip -\arraycolsep
-  \let\@ifnextchar\new@ifnextchar
-  \array{#1}}
-\makeatother
-
-\usetikzlibrary{calc}
-\lstset{
-	language=C,
-	showstringspaces=false,
-	numbers=none,
-	xleftmargin=0cm
-}
 
 \izenburua{Nonograma}
 \azpiizenburua{Proiektuaren Txostena}
@@ -51,42 +34,30 @@ Jokoa amaitzeko modu bakarra kontagailua 0-ra iristea da, hau da, irudi zuzena l
 
 Jokoa hasi orduko, pantailako lauki guztiak txuriz agertuko dira. Lauki txuri baten gainean behin sakatuz gero, beltz bihurtuko da, eta alderantziz ere, hau da, lauki beltz baten gainean sakatuz gero, txuri bilakatuko da. 
 
-\
 Adibideak:
 
-\begin{center}
-\includegraphics[scale=0.5]{nonograma1} \\Adibide sinplea 
-\end{center}
-\begin{center}
-\includegraphics[scale=0.5]{nonograma2} \\Profesionalentzako bakarrik...
-\end{center}
+\begin{taula}{}{argazkiTaula}{cc}
+\includegraphics[scale=0.75]{nonograma1} & \includegraphics[scale=0.75]{nonograma2} \\
+Adibide sinplea & Profesionalentzako bakarrik...
+\end{taula}
 
 \section{Kontzeptu-mapa}
 
-\begin{tikzpicture}
-\node(0) at (3,0)[shape=circle,draw]	{$HASIERA$};
-\node(1) at (3,4)[shape=circle,draw]    {$JOLASTEN$};
-\node(2) at (0,8)[shape=circle,draw]    {$GALDUTA$};
-\node(3) at (6,8)[shape=circle,draw]	{$IRABAZITA$};
-\node(4) at (0,12)[shape=circle,draw]	{$RESET$};
-\node(5) at (6,12)[shape=circle,draw]	{$RESET\_BERRI$};
-\path [->]
-  (0) edge node [above, preaction={fill, white}, yshift=-25] {$\begin{array}{c}
-   A\text{ pultsatu}\big\{ \\
-   \text{DenboragailuaMartxanJarri();} \\
-   \text{seg=0;}
-  \end{array}$} (1)
-  (1) edge [bend right=30]  node [below, preaction={fill, white},yshift=20,xshift=20] {$\begin{array}{c}\text{seg==10} \big\{ \\ \text{GalduMezuaErakutsi();}\end{array}$} (2)
-  (1) edge [bend left=30]  node [below, preaction={fill, white},yshift=15,xshift=-20] {$\begin{array}{c}\text{Pantaila \&\& !KableOna(px, py)} \big\{ \\ \text{GalduMezuaErakutsi();}\end{array}$} (2)
-  (1) edge node [above, right, preaction={fill, white}, yshift=-7, xshift=-30] {$\begin{array}{c}\text{Pantaila \&\& KableOna(px, py)} \big\{ \\ \text{IrabaziMezuaErakutsi();}\end{array}$} (3)
-  (2) edge node [above, right] {Hola} (4)
-  (2) edge node [above] {} (5)
-  (3) edge node [above] {} (4)
-  (3) edge node [above, left] {Adios} (5)
-  
-  (4) edge [bend right=75]  node [below] {} (0)
-  (5) edge [bend left=75]   node [below] {} (0)
-  %(0) edge [loop above]    node [above] {} ()
+\begin{tikzpicture}[y=-1cm, scale=0.99, every node/.style={scale=0.99}]
+\node(start) at (-3,8){};
+\node(0) at (0,0)	[shape=circle,draw, ultra thick]	{$BETE\_GABE$};
+\node(1) at (8,0)	[shape=circle,draw, ultra thick]	{$BETETA$};
+\node(2) at (8,8)	[shape=circle,draw, ultra thick]	{$IRABAZTEN$};
+\node(3) at (0,8)	[shape=circle,draw, ultra thick]	{$RESET$};
+\path [ultra thick, ->]
+  (start) edge [bend left=20] node [above] {} (3)
+  (0) edge [in=40,out=80,loop] node [above] {Pantaila $\&\& \,\left(\text{giltza\_da}(tx, ty)\, \neq \,\, !\text{piztuta\_dago}(tx, ty)\right)\left\{\begin{array}{l}\text{kontagailua}--;\\ \text{aldatuSpritea(tx, ty);}\end{array}\right.$}
+  (0) edge [in=320,out=280,loop] node [below right, xshift=-70] {$\begin{array}{c}\text{Pantaila} \,\, \&\& \\ \left(\text{giltza\_da}(tx, ty)\, == \,\, !\text{piztuta\_dago}(tx, ty)\right) \\ \left\{\begin{array}{l}\text{kontagailua}++;\\ \text{aldatuSpritea(tx, ty);}\end{array}\right.\end{array}$}
+  (0) edge node [above] {kontagailua$==0 \big\{$} (1)
+  (1) edge [below] node [right] {$\begin{array}{l}\text{Pantaila \&\& giltza\_da(tx, ty)} \\ \left\{\begin{array}{l}\text{ErlojuaMartxanJarri();}\\ \text{seg=0;}\end{array}\right.\end{array}$} (2)
+  (2) edge [bend right=20] node [above] {seg == 0} (3)
+  (2) edge [bend left=20] node [below] {Teklatua \&\& SakatutakoTekla() == 'A'} (3)
+  (3) edge [bend left=20] node [left] {$\left\{\begin{array}{l}ItzaliSpriteak(); \\ kontagailua=18; \\ \end{array}\right.$} (0)
   ;
 \end{tikzpicture}
 

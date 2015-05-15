@@ -1,3 +1,5 @@
+#include "lagungarriak.h"
+
 
 void ezabatu_lerroa(int y)
 {

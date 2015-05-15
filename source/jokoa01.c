@@ -7,7 +7,6 @@ adibide batean oinarrituta.
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
-
 	
 #include "definizioak.h"
 #include "periferikoak.h"
@@ -39,7 +38,6 @@ void jokoa01()
 {
 	init();
 	erakutsiAtea();
-	reset();
 
 	while(1)
 	{
@@ -63,26 +61,30 @@ void jokoa01()
 			touchRead(&PANT_DAT);
 			if((PANT_DAT.px != 0 || PANT_DAT.py != 0))
 			{
-			 	int px = PANT_DAT.px;
-			 	int py = PANT_DAT.py;
+				int px = PANT_DAT.px;
+				int py = PANT_DAT.py;
 
-			 	if(px > X_OFFSET && py > Y_OFFSET)
-			 	{
-			 		int tx = (px - X_OFFSET) / TILE_SIZE;
-			 		int ty = (py - Y_OFFSET) / TILE_SIZE;
-			 		if (tx != last_tx || ty != last_ty)
-			 		{
-			 			if (EGOERA == EGOERA_BETE_GABE)
-			 			{
-				 			karratua_klikatu(tx, ty);
-				 			last_tx = tx;
-				 			last_ty = ty;
-			 			}
-				 		else if (EGOERA == EGOERA_BETETA && giltza_da(tx, ty))
-				 		{
-				 			EGOERA = EGOERA_IRABAZI;
-				 		}
-			 		}
+				if(px > X_OFFSET && py > Y_OFFSET)
+				{
+					int tx = (px - X_OFFSET) / TILE_SIZE;
+					int ty = (py - Y_OFFSET) / TILE_SIZE;
+					if (tx != last_tx || ty != last_ty)
+					{
+						if (EGOERA == EGOERA_BETE_GABE)
+						{
+							karratua_klikatu(tx, ty);
+							last_tx = tx;
+							last_ty = ty;
+						}
+						else if (EGOERA == EGOERA_BETETA && giltza_da(tx, ty))
+						{
+							ezabatu_pantaila();
+							iprintf("\x1b[7;4HZorionak, lortu duzu! :D");
+
+							ErlojuaMartxanJarri();
+							EGOERA = EGOERA_IRABAZTEN;
+						}
+					}
 				}
 				
 			}
@@ -90,14 +92,6 @@ void jokoa01()
 			{
 				last_ty = last_tx = -1;
 			}
-		}
-		else if (EGOERA == EGOERA_IRABAZI)
-		{
-			ezabatu_pantaila();
-			iprintf("\x1b[7;4HZorionak, lortu duzu! :D");
-
-			ErlojuaMartxanJarri();
-			EGOERA = EGOERA_IRABAZTEN;
 		}
 		else if (EGOERA == EGOERA_RESET)
 		{
@@ -164,7 +158,7 @@ void reset()
 {
 	kontagailua = 18;
 	int x, y;
-	for(x = 0; x<TILES; x++) 
+	for(x = 0; x<TILES; x++)
 	{
 		for(y = 0; y<TILES; y++)
 		{

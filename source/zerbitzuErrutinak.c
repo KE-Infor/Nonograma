@@ -37,6 +37,7 @@ void tenpEten()
 			if (seg==10)
 			{
 				EGOERA = EGOERA_RESET;
+				seg = 0;
 			}				
 		}
 	}
@@ -52,4 +53,3 @@ void etenZerbErrutEzarri()
 	irqSet(IRQ_KEYS, tekEten);
 	irqSet(IRQ_TIMER0, tenpEten);
 }
-
