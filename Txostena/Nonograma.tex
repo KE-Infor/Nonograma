@@ -23,18 +23,21 @@ Nintendo DS-rako \textit{100 doors} jokuaren motako ate bat diseinatu eta progra
 
 \section{Proiektuaren definizioa: Nonograma}
 
-Nonograma adimen joko japoniar bat da, Sudoku baten antzekoa, baina kasu honetan laukiak zenbakiekin bete beharrean, zenbaki konbinazio zehatz bat lortzeko, laukitxoak bete egin behar dira irudi zehatz bat lortzeko. Irudi zehatz hori lortu ahal izateko laukitxoak bete egin behar dira, eta laukitxo egokiak aukeratu ahal izateko goikaldean eta ezker aldean zenbaki batzuk aurkituko ditugu, horiek jarraian bete beharreko laukitxoen kopurua adierazten dute. Irudia aldez aurretik aukeratua da eta jokoa irabaztea ezinezkoa da beste irudiren bat lortu ezkero. 
+Nonograma adimen joko japoniar bat da, Sudoku baten antzekoa, baina kasu honetan ezker- eta goi-marginetan agertzen diren zenbakietan oinarrituz, laukiak bete behar dira, irudi bat lortzeko. Goi-marginan agertzen diren zenbakiak zutabe horretan laukiak nola bete behar diren adierazten dute. Zifra bakoitzak segidan dauden lauki beltz kopuru bat adierazten du. Hortaz, zutabe baten gainean \textit{$\left\langle\!\left\langle\, 5\, \right\rangle\!\right\rangle$} bat agertzen bada, zutabe horretan nonbait 5 lauki segidan daudela adierazten du; \textit{$\left\langle\!\!\!\left\langle\!\!\!\begin{array}{c}1 \\ 5\end{array}\!\!\!\right\rangle\!\!\!\right\rangle$} agertzen bada, aldiz, lauki bakar bat, eta gutxienez lauki txuri batengatik separatutako 3 lauki beltz agertzen direla adierazten du. Ezker-marginan dauden zenbakiekin berdina gertatzen da, baina hauek errenkada horretako lauki-konbinazioa adierazten dute.
 
-\textit{100 doors} jokorako ate bat diseinatu behar genuenez, nonograma honetarako irudia giltza bat izatea adostu genuen, honen bitartez irekitzen baitira ateak. 
+\textit{100 doors} jokorako ate bat diseinatu behar genuenez, nonograma honetarako irudia giltza bat izatea adostu genuen, hauen bitartez irekitzen baitira ateak. 
 
-Jokoaren deskribapena:
-Laguntza bezala, kontagailu bat agertzen da pantailan, honek adierazten digu zenbat laukitxo aldatu behar ditugun irudia zuzena izan dadin. Kontagailu hau inkrementatu egiten da zuzena den laukitxo bat ezabatu, edo okerra den bat bete ondoren, horrela ziurtatuta gelditzen da kontagailua ez dela 0-ra iritsiko irudi zuzena ez bada lortzen. 
-
-Jokoa amaitzeko modu bakarra kontagailua 0-ra iristea da, hau da, irudi zuzena lortzea, eta horren ondoren irudiaren gainean sakatzea atea ireki ahal izateko. Behin irudia lortuta 10 segundu pasa eta gero irudiaren gainean ez bada sakatzen, jokoa berrabiarazi egingo da.
+\subsection{Jokoaren deskribapena}
 
 Jokoa hasi orduko, pantailako lauki guztiak txuriz agertuko dira. Lauki txuri baten gainean behin sakatuz gero, beltz bihurtuko da, eta alderantziz ere, hau da, lauki beltz baten gainean sakatuz gero, txuri bilakatuko da. 
 
-Adibideak:
+Jokoa errazteko asmoz, kontagailu bat gehitu diogu jokoari. Kontagailuak adieraziko du zenbat lauki aldatu behar diren (txuritik beltzera, zein beltzetik txurira) lortu behar den irudia, hots, giltza, lortzeko.
+
+Hortaz, giltza 18 lauki beltzez osatuta dagoenez, hasieran kontagailuak 18 balioko du, eta giltzari dagokion lauki bat belztean, kontagailua dekrementatuko da; beste edozein laukiren kasuan, berriz, inkrementatuko da. Honela, erraz jakin daiteke belztutako karratu bat giltzaren parte den ala ez, kontagailuak jasan duen aldaketari erreparatuz, jokoa erraztuz. Gainera, modu honetan, kontagailuari bakarrik erreparatuz jakin daiteke jokoa irabazi den ala ez, izan ere, kontagailua 0 balioa hartuko du baldin eta soilik baldin giltza beterik badago.
+
+Giltza bete denean, giltzaren gainean klikatu beharko da. Modu honetan giltza erabili izan denaren \textcolor{red}{inpresioa} emango du. 
+
+\subsection{Adibideak}
 
 \begin{taula}{}{argazkiTaula}{cc}
 \includegraphics[scale=0.75]{nonograma1} & \includegraphics[scale=0.75]{nonograma2} \\
